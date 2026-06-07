@@ -1,0 +1,86 @@
+[
+  {
+    "id": "johnsma02_LAL_1980",
+    "name": "Magic Johnson",
+    "franchiseId": "LAL",
+    "decade": 1980,
+    "eligiblePositions": ["PG"],
+    "stats": {
+      "points": 19.5,
+      "rebounds": 7.2,
+      "assists": 11.2,
+      "steals": 1.9,
+      "blocks": 0.4
+    }
+  },
+  {
+    "id": "jordami01_CHI_1990",
+    "name": "Michael Jordan",
+    "franchiseId": "CHI",
+    "decade": 1990,
+    "eligiblePositions": ["SG", "SF"],
+    "stats": {
+      "points": 30.1,
+      "rebounds": 6.2,
+      "assists": 5.3,
+      "steals": 2.3,
+      "blocks": 0.8
+    }
+  },
+  {
+    "id": "jamesle01_MIA_2010",
+    "name": "LeBron James",
+    "franchiseId": "MIA",
+    "decade": 2010,
+    "eligiblePositions": ["SF", "PF"],
+    "stats": {
+      "points": 27.1,
+      "rebounds": 7.5,
+      "assists": 7.4,
+      "steals": 1.6,
+      "blocks": 0.8
+    }
+  },
+  {
+    "id": "duncati01_SAS_2000",
+    "name": "Tim Duncan",
+    "franchiseId": "SAS",
+    "decade": 2000,
+    "eligiblePositions": ["PF", "C"],
+    "stats": {
+      "points": 19.0,
+      "rebounds": 10.8,
+      "assists": 3.0,
+      "steals": 0.7,
+      "blocks": 2.2
+    }
+  },
+  {
+    "id": "onealsh01_LAL_2000",
+    "name": "Shaquille O'Neal",
+    "franchiseId": "LAL",
+    "decade": 2000,
+    "eligiblePositions": ["C"],
+    "stats": {
+      "points": 23.7,
+      "rebounds": 10.9,
+      "assists": 2.5,
+      "steals": 0.6,
+      "blocks": 2.3
+    }
+  },
+  {
+    "id": "birdla01_BOS_1980",
+    "name": "Larry Bird",
+    "franchiseId": "BOS",
+    "decade": 1980,
+    "eligiblePositions": ["SF", "PF"],
+    "stats": {
+      "points": 24.3,
+      "rebounds": 10.0,
+      "assists": 6.3,
+      "steals": 1.7,
+      "blocks": 0.8
+    }
+  }
+]

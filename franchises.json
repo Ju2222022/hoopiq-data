@@ -1,0 +1,39 @@
+[
+  {
+    "id": "LAL",
+    "primaryColorHex": "552583",
+    "secondaryColorHex": "FDB927"
+  },
+  {
+    "id": "CHI",
+    "primaryColorHex": "CE1141",
+    "secondaryColorHex": "000000"
+  },
+  {
+    "id": "BOS",
+    "primaryColorHex": "007A33",
+    "secondaryColorHex": "BA9653"
+  },
+  {
+      "id": "MIA",
+      "primaryColorHex": "000000",
+      "secondaryColorHex": "98002E"
+    },
+  {
+    "id": "SAS",
+    "primaryColorHex": "C4CED4",
+    "secondaryColorHex": "000000"
+  },
+  {
+    "id": "OKC",
+    "primaryColorHex": "007AC1",
+    "secondaryColorHex": "EF3B24",
+    "historicalAbbreviations": {
+      "1960": "SEA",
+      "1970": "SEA",
+      "1980": "SEA",
+      "1990": "SEA",
+      "2000": "SEA"
+    }
+  }
+]
