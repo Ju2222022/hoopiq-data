@@ -5,13 +5,15 @@ import kagglehub
 import os
 
 # 1. CONFIGURATION
-# Ta liste blanche pour les joueurs cultes (Fan Favorites) qui doivent être là
-FAN_FAVORITES = ["Robert Horry", "Steve Kerr", "Alex Caruso", "Udonis Haslem", "JJ Redick", "Brian Scalabrine"]
+# J'ai ajouté quelques légendes des 70s dans la liste blanche par sécurité
+FAN_FAVORITES = ["Robert Horry", "Steve Kerr", "Alex Caruso", "Udonis Haslem", "JJ Redick", "Brian Scalabrine", "Pete Maravich", "Julius Erving"]
 TOP_PLAYERS_PER_FRANCHISE = 12
 
 # 2. FONCTIONS DE MAPPING
 def get_decade(year):
-    if 1980 <= year <= 1989: return "eighties"
+    # NOUVEAU : Ajout des années 70
+    if 1970 <= year <= 1979: return "seventies"
+    elif 1980 <= year <= 1989: return "eighties"
     elif 1990 <= year <= 1999: return "nineties"
     elif 2000 <= year <= 2009: return "thousands"
     elif 2010 <= year <= 2019: return "tens"
@@ -32,33 +34,35 @@ def map_positions(pos_string):
 def build_database():
     print("🏀 Téléchargement des données depuis Kaggle...")
     
-    # Téléchargement dynamique via KaggleHub
     path = kagglehub.dataset_download("drgilermo/nba-players-stats")
     csv_path = os.path.join(path, "Seasons_Stats.csv")
     
     print(f"📊 Fichier trouvé : {csv_path}. Début du traitement...")
     df = pd.read_csv(csv_path)
     
-    # Filtre de base : Depuis 1980, minimum 40 matchs
-    df = df[(df['Year'] >= 1980) & (df['Year'] <= 2024)]
+    # NOUVEAU : Filtre descendu à 1970
+    df = df[(df['Year'] >= 1970) & (df['Year'] <= 2024)]
     df = df[df['G'] >= 40]
     df['Decade'] = df['Year'].apply(get_decade)
     df = df.dropna(subset=['Decade'])
     
-    # Création de l'Impact Score (Valorisation de la polyvalence)
+    # SÉCURITÉ 70s : Remplacement des cases vides par des 0 pour éviter les crashs
+    df['PTS'] = df['PTS'].fillna(0)
+    df['TRB'] = df['TRB'].fillna(0)
+    df['AST'] = df['AST'].fillna(0)
+    df['STL'] = df['STL'].fillna(0)
+    df['BLK'] = df['BLK'].fillna(0)
+    
+    # Création de l'Impact Score
     df['Impact_Score'] = df['PTS'] + (df['TRB'] * 1.2) + (df['AST'] * 1.5) + (df['STL'] * 2.5) + (df['BLK'] * 2.5)
     
-    # On isole la MEILLEURE saison de chaque joueur par décennie
+    # Isolation de la meilleure saison par décennie
     df = df.sort_values('Impact_Score', ascending=False)
     best_seasons = df.drop_duplicates(subset=['Player', 'Decade'], keep='first')
     
-    # LE FILTRE D'ÉQUILIBRAGE (TOP 12)
+    # Filtre d'équilibrage (Top 12)
     top_franchise_players = best_seasons.groupby(['Decade', 'Tm']).head(TOP_PLAYERS_PER_FRANCHISE)
-    
-    # Ajout de la Whitelist
     favorites_df = best_seasons[best_seasons['Player'].isin(FAN_FAVORITES)]
-    
-    # Fusion et nettoyage final
     final_df = pd.concat([top_franchise_players, favorites_df]).drop_duplicates(subset=['Player', 'Decade'])
     
     # 4. CONSTRUCTION DU JSON
@@ -66,7 +70,7 @@ def build_database():
     for index, row in final_df.iterrows():
         players_list.append({
             "id": str(uuid.uuid4()),
-            "name": str(row['Player']).replace("*", ""), # Retire l'astérisque du Hall of Fame
+            "name": str(row['Player']).replace("*", ""), 
             "eligiblePositions": map_positions(row['Pos']),
             "franchiseId": str(row['Tm']).upper(),
             "decade": row['Decade'],
