@@ -21,14 +21,15 @@ def get_decade(year):
     return None
 
 def map_positions(pos_string):
-    if not isinstance(pos_string, str): return ["smallForward"]
+    if not isinstance(pos_string, str): return ["SF"]
+    # On conserve les initiales brutes de Kaggle au lieu de les traduire
     pos_map = {
-        "PG": "pointGuard", "SG": "shootingGuard",
-        "SF": "smallForward", "PF": "powerForward", "C": "center"
+        "PG": "PG", "SG": "SG",
+        "SF": "SF", "PF": "PF", "C": "C"
     }
     positions = pos_string.split('-')
     mapped = [pos_map[p] for p in positions if p in pos_map]
-    return mapped if mapped else ["smallForward"]
+    return mapped if mapped else ["SF"]
 
 # 3. TRAITEMENT DES DONNÉES
 def build_database():
