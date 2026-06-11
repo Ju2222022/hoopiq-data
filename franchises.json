@@ -1,13 +1,8 @@
 [
   {
-    "id": "LAL",
-    "primaryColorHex": "552583",
-    "secondaryColorHex": "FDB927"
-  },
-  {
-    "id": "CHI",
-    "primaryColorHex": "CE1141",
-    "secondaryColorHex": "000000"
+    "id": "ATL",
+    "primaryColorHex": "E03A3E",
+    "secondaryColorHex": "C1D32F"
   },
   {
     "id": "BOS",
@@ -15,25 +10,184 @@
     "secondaryColorHex": "BA9653"
   },
   {
-      "id": "MIA",
-      "primaryColorHex": "000000",
-      "secondaryColorHex": "98002E"
-    },
+    "id": "BRK",
+    "primaryColorHex": "000000",
+    "secondaryColorHex": "FFFFFF",
+    "historicalAbbreviations": {
+      "1970": "NJN",
+      "1980": "NJN",
+      "1990": "NJN",
+      "2000": "NJN"
+    }
+  },
   {
-    "id": "SAS",
-    "primaryColorHex": "C4CED4",
+    "id": "CHA",
+    "primaryColorHex": "1D1160",
+    "secondaryColorHex": "00788C",
+    "historicalAbbreviations": {
+      "1980": "CHH",
+      "1990": "CHH",
+      "2010": "CHO",
+      "2020": "CHO"
+    }
+  },
+  {
+    "id": "CHI",
+    "primaryColorHex": "CE1141",
     "secondaryColorHex": "000000"
+  },
+  {
+    "id": "CLE",
+    "primaryColorHex": "860038",
+    "secondaryColorHex": "041E42"
+  },
+  {
+    "id": "DAL",
+    "primaryColorHex": "00538C",
+    "secondaryColorHex": "B8C4CA"
+  },
+  {
+    "id": "DEN",
+    "primaryColorHex": "0E2240",
+    "secondaryColorHex": "FEC524"
+  },
+  {
+    "id": "DET",
+    "primaryColorHex": "C8102E",
+    "secondaryColorHex": "1D428A"
+  },
+  {
+    "id": "GSW",
+    "primaryColorHex": "1D428A",
+    "secondaryColorHex": "FFC72C"
+  },
+  {
+    "id": "HOU",
+    "primaryColorHex": "CE1141",
+    "secondaryColorHex": "000000"
+  },
+  {
+    "id": "IND",
+    "primaryColorHex": "002D62",
+    "secondaryColorHex": "FDBB30"
+  },
+  {
+    "id": "LAC",
+    "primaryColorHex": "C8102E",
+    "secondaryColorHex": "1D428A",
+    "historicalAbbreviations": {
+      "1970": "BUF",
+      "1980": "SDC"
+    }
+  },
+  {
+    "id": "LAL",
+    "primaryColorHex": "552583",
+    "secondaryColorHex": "FDB927"
+  },
+  {
+    "id": "MEM",
+    "primaryColorHex": "5D76A9",
+    "secondaryColorHex": "12173F",
+    "historicalAbbreviations": {
+      "1990": "VAN"
+    }
+  },
+  {
+    "id": "MIA",
+    "primaryColorHex": "98002E",
+    "secondaryColorHex": "F9A01B"
+  },
+  {
+    "id": "MIL",
+    "primaryColorHex": "00471B",
+    "secondaryColorHex": "EEE1C6"
+  },
+  {
+    "id": "MIN",
+    "primaryColorHex": "0C2340",
+    "secondaryColorHex": "236192"
+  },
+  {
+    "id": "NOP",
+    "primaryColorHex": "0C2340",
+    "secondaryColorHex": "C8102E",
+    "historicalAbbreviations": {
+      "2000": "NOH",
+      "2010": "NOH"
+    }
+  },
+  {
+    "id": "NYK",
+    "primaryColorHex": "006BB6",
+    "secondaryColorHex": "F58426"
   },
   {
     "id": "OKC",
     "primaryColorHex": "007AC1",
     "secondaryColorHex": "EF3B24",
     "historicalAbbreviations": {
-      "1960": "SEA",
       "1970": "SEA",
       "1980": "SEA",
       "1990": "SEA",
       "2000": "SEA"
+    }
+  },
+  {
+    "id": "ORL",
+    "primaryColorHex": "0077C0",
+    "secondaryColorHex": "C4CED4"
+  },
+  {
+    "id": "PHI",
+    "primaryColorHex": "006BB6",
+    "secondaryColorHex": "ED174C"
+  },
+  {
+    "id": "PHO",
+    "primaryColorHex": "1D1160",
+    "secondaryColorHex": "E56020"
+  },
+  {
+    "id": "POR",
+    "primaryColorHex": "E03A3E",
+    "secondaryColorHex": "000000"
+  },
+  {
+    "id": "SAC",
+    "primaryColorHex": "5A2D81",
+    "secondaryColorHex": "000000",
+    "historicalAbbreviations": {
+      "1970": "KCK",
+      "1980": "KCK"
+    }
+  },
+  {
+    "id": "SAS",
+    "primaryColorHex": "000000",
+    "secondaryColorHex": "C4CED4"
+  },
+  {
+    "id": "TOR",
+    "primaryColorHex": "CE1141",
+    "secondaryColorHex": "000000"
+  },
+  {
+    "id": "UTA",
+    "primaryColorHex": "002B5C",
+    "secondaryColorHex": "F9A01B",
+    "historicalAbbreviations": {
+      "1970": "NOJ"
+    }
+  },
+  {
+    "id": "WAS",
+    "primaryColorHex": "002B5C",
+    "secondaryColorHex": "E31837",
+    "historicalAbbreviations": {
+      "1970": "WSB",
+      "1980": "WSB",
+      "1990": "WSB"
     }
   }
 ]
