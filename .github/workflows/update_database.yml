@@ -11,6 +11,10 @@ on:
   # depuis l'interface web GitHub si besoin (très pratique pour tes tests)
   workflow_dispatch:
 
+# NOUVEAU : Autorise le bot à pousser le fichier sur ton dépôt
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
