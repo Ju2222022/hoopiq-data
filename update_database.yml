@@ -1,10 +1,15 @@
 name: Build HoopIQ Database
 
+# 1. QUAND DÉCLENCHER LE SCRIPT ?
 on:
-  push:
-    paths:
-      - 'build_hoopiq_db.py'
-  workflow_dispatch: 
+  schedule:
+    # Syntaxe Cron : Minute | Heure | Jour | Mois | Jour de la semaine
+    # Ici : À 00:00, le 1er jour du 7ème mois (Juillet), tous les ans.
+    - cron: '0 0 1 7 *'
+    
+  # Permet TOUJOURS de lancer le script manuellement en un clic 
+  # depuis l'interface web GitHub si besoin (très pratique pour tes tests)
+  workflow_dispatch:
 
 jobs:
   build:
