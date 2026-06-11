@@ -1,0 +1,38 @@
+name: Build HoopIQ Database
+
+on:
+  push:
+    paths:
+      - 'build_hoopiq_db.py'
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          
+      # NOUVEAU : On ajoute kagglehub aux dépendances
+      - name: Install dependencies
+        run: pip install pandas kagglehub
+        
+      # NOUVEAU : On injecte les secrets Kaggle de manière sécurisée
+      - name: Run Python Builder
+        env:
+          KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+          KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+        run: python build_hoopiq_db.py
+        
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add players.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update players database via Kaggle" && git push)
