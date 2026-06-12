@@ -6,7 +6,7 @@ import os
 
 # 1. CONFIGURATION
 FAN_FAVORITES = ["Robert Horry", "Steve Kerr", "Alex Caruso", "Udonis Haslem", "JJ Redick", "Brian Scalabrine", "Pete Maravich", "Julius Erving"]
-TOP_PLAYERS_PER_FRANCHISE = 40
+TOP_PLAYERS_PER_FRANCHISE = 45
 
 # 2. FONCTIONS DE MAPPING
 def get_decade(year):
