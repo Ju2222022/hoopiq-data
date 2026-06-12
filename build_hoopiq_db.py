@@ -7,7 +7,7 @@ import os
 # 1. CONFIGURATION
 # J'ai ajouté quelques légendes des 70s dans la liste blanche par sécurité
 FAN_FAVORITES = ["Robert Horry", "Steve Kerr", "Alex Caruso", "Udonis Haslem", "JJ Redick", "Brian Scalabrine", "Pete Maravich", "Julius Erving"]
-TOP_PLAYERS_PER_FRANCHISE = 12
+TOP_PLAYERS_PER_FRANCHISE = 30
 
 # 2. FONCTIONS DE MAPPING
 def get_decade(year):
