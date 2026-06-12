@@ -48,6 +48,9 @@ def build_database():
     df = df[df['g'] >= 40]
     df['Decade'] = df['season'].apply(get_decade)
     df = df.dropna(subset=['Decade'])
+   
+    # CORRECTIF : On supprime les lignes "TOT" (statistiques agrégées des transferts)
+    df = df[df[team_col].astype(str).str.upper() != 'TOT']
     
     # Sécurité supplémentaire pour les statistiques
     for col in ['pts', 'trb', 'ast', 'stl', 'blk']:
