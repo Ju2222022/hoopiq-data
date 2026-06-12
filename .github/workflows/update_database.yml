@@ -30,7 +30,7 @@ jobs:
           
       # NOUVEAU : On ajoute kagglehub aux dépendances
       - name: Install dependencies
-        run: pip install pandas requests lxml
+        run: pip install pandas kagglehub
         
       # NOUVEAU : On injecte les secrets Kaggle de manière sécurisée
       - name: Run Python Builder
