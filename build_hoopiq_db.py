@@ -6,7 +6,7 @@ import os
 
 # 1. CONFIGURATION
 FAN_FAVORITES = ["Robert Horry", "Steve Kerr", "Alex Caruso", "Udonis Haslem", "JJ Redick", "Brian Scalabrine", "Pete Maravich", "Julius Erving"]
-TOP_PLAYERS_PER_FRANCHISE = 15 # La limite a bien été augmentée ici !
+TOP_PLAYERS_PER_FRANCHISE = 15
 
 # 2. FONCTIONS DE MAPPING
 def get_decade(year):
@@ -21,7 +21,6 @@ def get_decade(year):
 def map_positions(pos_string):
     if not isinstance(pos_string, str): return ["SF"]
     pos_map = {"PG": "PG", "SG": "SG", "SF": "SF", "PF": "PF", "C": "C"}
-    # Sécurité supplémentaire pour nettoyer le format des postes
     positions = str(pos_string).upper().split('-')
     mapped = [pos_map[p] for p in positions if p in pos_map]
     return mapped if mapped else ["SF"]
@@ -30,32 +29,39 @@ def map_positions(pos_string):
 def build_database():
     print("🏀 Téléchargement des données depuis Kaggle (Base de données moderne)...")
     
-    # NOUVEAU DATASET : Toujours à jour avec les dernières saisons !
     path = kagglehub.dataset_download("sumitrodatta/nba-aba-baa-stats")
     csv_path = os.path.join(path, "Player Totals.csv")
     
     print(f"📊 Fichier trouvé : {csv_path}. Début du traitement...")
     df = pd.read_csv(csv_path)
     
-    # Les colonnes sont en minuscules dans ce nouveau dataset
+    # ⚠️ NOUVEAUTÉ : On force toutes les colonnes en minuscules pour éviter les erreurs de majuscules
+    df.columns = df.columns.str.lower()
+    
+    # ⚠️ NOUVEAUTÉ : Détection dynamique du nom de la colonne équipe
+    team_col = 'tm'
+    if 'team' in df.columns: team_col = 'team'
+    elif 'team_id' in df.columns: team_col = 'team_id'
+    elif 'team_abbreviation' in df.columns: team_col = 'team_abbreviation'
+    
     df = df[(df['season'] >= 1970)]
     df = df[df['g'] >= 40]
     df['Decade'] = df['season'].apply(get_decade)
     df = df.dropna(subset=['Decade'])
     
-    # Sécurité mathématique : on convertit bien tout en nombre
+    # Sécurité supplémentaire pour les statistiques
     for col in ['pts', 'trb', 'ast', 'stl', 'blk']:
-        df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
-    
-    # Création de l'Impact Score
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+        else:
+            df[col] = 0.0
+            
     df['Impact_Score'] = df['pts'] + (df['trb'] * 1.2) + (df['ast'] * 1.5) + (df['stl'] * 2.5) + (df['blk'] * 2.5)
     
-    # Isolation de la meilleure saison par décennie pour chaque joueur
     df = df.sort_values('Impact_Score', ascending=False)
     best_seasons = df.drop_duplicates(subset=['player', 'Decade'], keep='first')
     
-    # Filtre d'équilibrage (Top 15 par franchise + Favoris)
-    top_franchise_players = best_seasons.groupby(['Decade', 'tm']).head(TOP_PLAYERS_PER_FRANCHISE)
+    top_franchise_players = best_seasons.groupby(['Decade', team_col]).head(TOP_PLAYERS_PER_FRANCHISE)
     favorites_df = best_seasons[best_seasons['player'].isin(FAN_FAVORITES)]
     final_df = pd.concat([top_franchise_players, favorites_df]).drop_duplicates(subset=['player', 'Decade'])
     
@@ -66,14 +72,14 @@ def build_database():
             "id": str(uuid.uuid4()),
             "name": str(row['player']).replace("*", ""), 
             "eligiblePositions": map_positions(row['pos']),
-            "franchiseId": str(row['tm']).upper(),
+            "franchiseId": str(row[team_col]).upper(),
             "decade": row['Decade'],
             "stats": {
-                "points": round(float(row['pts']), 1),
-                "rebounds": round(float(row['trb']), 1),
-                "assists": round(float(row['ast']), 1),
-                "steals": round(float(row['stl']), 1),
-                "blocks": round(float(row['blk']), 1)
+                "points": round(float(row.get('pts', 0)), 1),
+                "rebounds": round(float(row.get('trb', 0)), 1),
+                "assists": round(float(row.get('ast', 0)), 1),
+                "steals": round(float(row.get('stl', 0)), 1),
+                "blocks": round(float(row.get('blk', 0)), 1)
             }
         })
     
